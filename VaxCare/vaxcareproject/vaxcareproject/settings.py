@@ -31,7 +31,7 @@ EMAIL_HOST = 'smtp.gmail.com'  # hoặc mail server bạn dùng
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'trungtamtiemchungvaxcare@gmail.com'
-EMAIL_HOST_PASSWORD = 'ppuhoketrqfbyfnr'  # App password, không phải mật khẩu tài khoản Google
+EMAIL_HOST_PASSWORD = ''  # App password, không phải mật khẩu tài khoản Google
 
 
 ALLOWED_HOSTS = ['192.168.1.172','127.0.0.1','192.168.172.227']
