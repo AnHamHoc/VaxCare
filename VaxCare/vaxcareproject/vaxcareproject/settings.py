@@ -123,9 +123,9 @@ INTERNAL_IPS = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dwpyfpdyr',
-    'API_KEY': '334879836694729',
-    'API_SECRET': 'HuBum5IwP29lKr-OV3FmwrAt3cU'
+    'CLOUD_NAME': '',
+    'API_KEY': '',
+    'API_SECRET': ''
 }
 cloudinary.config(
     cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
