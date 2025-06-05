@@ -19,6 +19,8 @@ class VaccineDosesSerializer(serializers.ModelSerializer):
 
 
 class DoseSchedulesSerializer(serializers.ModelSerializer):
+    vaccine_name = serializers.CharField(source='dose.vaccine.name', read_only=True)
+    dose_name = serializers.CharField(source='dose.name', read_only=True)
     class Meta:
         model = DoseSchedules
         fields = '__all__'
@@ -31,9 +33,10 @@ class VaccinationRecordsSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'username', 'password', 'avatar']
+        fields = ['id','first_name', 'last_name', 'username', 'password', 'avatar','phone','email','birth_date','address','role']
         extra_kwargs = {
             'password': {
                 'write_only': True
@@ -50,6 +53,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CampaignSerializer(serializers.ModelSerializer):
+    vaccine_name = serializers.CharField(source='vaccine.name', read_only=True)
     class Meta:
         model = Campaign
         fields = '__all__'
@@ -62,12 +66,16 @@ class UserInforSerializer(serializers.ModelSerializer):
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
+    vaccine_name = serializers.CharField(source='vaccine.name', read_only=True)
+    user = UserSerializer()
     class Meta:
         model = Appointment
         fields = '__all__'
 
 
 class AppointmentDetailSerializer(serializers.ModelSerializer):
+    schedule_date = serializers.CharField(source='schedule.date', read_only=True)
+    dose_name = serializers.CharField(source='schedule.dose.name', read_only=True)
     class Meta:
         model = AppointmentDetail
         fields = '__all__'

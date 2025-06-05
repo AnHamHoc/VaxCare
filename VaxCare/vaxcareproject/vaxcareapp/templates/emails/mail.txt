@@ -1,0 +1,17 @@
+Kính gửi {{ user.first_name }} {{ user.last_name }},
+
+Chúc mừng bạn đã đăng ký lịch tiêm vắc-xin thành công.
+
+🔹 Vắc-xin: {{ vaccine.name }}
+
+🔸 Thông tin các mũi tiêm bạn đã đặt:
+{% for schedule in schedules %}
+- {{ schedule }}
+{% endfor %}
+
+Vui lòng đến đúng thời gian đã đăng ký để đảm bảo hiệu quả tiêm chủng và sức khỏe của bạn.
+
+Nếu bạn có bất kỳ thắc mắc nào, xin vui lòng liên hệ với trung tâm để được hỗ trợ kịp thời.
+
+Trân trọng cảm ơn,  
+Trung tâm Tiêm chủng

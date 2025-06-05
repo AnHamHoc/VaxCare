@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db.models import Count
 from django.template.response import TemplateResponse
 
-from .models import User, UserInfor, Vaccines, VaccineDoses, VaccinationRecords, DoseSchedules,Appointment,Campaign
+from .models import User, UserInfor, Vaccines, VaccineDoses, VaccinationRecords, DoseSchedules,Appointment,Campaign, AppointmentDetail
 from django.urls import path
 
 
@@ -30,10 +30,10 @@ class MyVaxCareAdminsite(admin.AdminSite):
 admin_site = MyVaxCareAdminsite(name='VaxCareManager')
 
 class MyUserAdmin(admin.ModelAdmin):
-    list_display = ['id','username','phone', 'email', 'avatar','role','is_active']
+    list_display = ['id','username','phone', 'email' ,'avatar','role','is_active']
 
 class MyUserInforAdmin(admin.ModelAdmin):
-    list_display = ['id','get_full_name','height','weight','birth_date']
+    list_display = ['id','user_id','get_full_name','height','weight','birth_date']
 
     @admin.display(description='FULL NAME')
     def get_full_name(self, obj):
@@ -54,6 +54,17 @@ class MyAppointmentAdmin(admin.ModelAdmin):
 class MyVaccinationRecordsAdmin(admin.ModelAdmin):
     list_display = ['user','schedule', 'staff','date','health_note']
 
+class MyAppointmentDetailAdmin(admin.ModelAdmin):
+    list_display = ['get_name_user','get_name_vaccine','appointment', 'schedule','active']
+
+    @admin.display(description='Tên Vaccine')
+    def get_name_vaccine(self, obj):
+        return f"{obj.appointment.vaccine.name}"
+
+    @admin.display(description='Tên user')
+    def get_name_user(self, obj):
+        return f"{obj.appointment.user.first_name} {obj.appointment.user.last_name}"
+
 
 
 # Register your models here.
@@ -64,4 +75,5 @@ admin_site.register(VaccineDoses, MyVaccineDosesAdmin)
 admin_site.register(VaccinationRecords, MyVaccinationRecordsAdmin)
 admin_site.register(DoseSchedules,MyDoseSchedulesAdmin)
 admin_site.register(Appointment, MyAppointmentAdmin)
+admin_site.register(AppointmentDetail, MyAppointmentDetailAdmin)
 admin_site.register(Campaign)

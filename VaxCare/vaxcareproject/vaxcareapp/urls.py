@@ -14,6 +14,7 @@ routers.register('campaign', views.CampaignViewSet, basename='campaign')
 routers.register('appointment', views.AppointmentViewSet, basename="appointment")
 routers.register('appointmentdetail', views.AppointmentDetailViewSet, basename='appointmentdetail')
 
+
 urlpatterns = [
     path('',include(routers.urls))
 ]

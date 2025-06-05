@@ -8,9 +8,14 @@ from ckeditor.fields import RichTextField
 class User(AbstractUser):
     # phần quyền người dùng
     ROLE_CHOICES = [
-        ('admin', 'Admin'),
-        ('staff' ,'Staff'),
-        ('citizen', 'Citizen')
+        ('Admin', 'Admin'),
+        ('Staff' ,'Staff'),
+        ('Citizen', 'Citizen')
+    ]
+    # Giới tính
+    GENDER_CHOICES = [
+        ('Nam', 'Nam'),
+        ('Nữ', 'Nữ'),
     ]
     # vai trò
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Citizen')
@@ -18,6 +23,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=20, null=True, unique=True)
     # Địa chỉ
     address = models.CharField(max_length=255, null=True)
+    birth_date = models.DateField(null=True, blank=True)
     # Ảnh đại diện
     avatar = CloudinaryField(null=True)
 
@@ -49,6 +55,7 @@ class Vaccines(BaseModel):
     quantity_dose = models.IntegerField(null=False) # số lượng liều cần tiêm
     manufacturer = models.CharField(max_length=100, null=False) # nhà sản xuất
     description = models.CharField(max_length=255, null=False) # miêu tả
+    image = CloudinaryField(null=True)
 
     def __str__(self):
         return self.name
@@ -87,8 +94,6 @@ class VaccinationRecords(BaseModel): # lich sử tiêm
 class Appointment(BaseModel): # đặt lịch
     STATUS_CHOICES = (
         ('pending', 'Pending'),#chờ
-        ('confirmed', 'Confirmed'),#xác nhận
-        ('cancelled', 'Cancelled'),#hủy
         ('completed', 'Completed'),#hoàn thành
     )
     user = models.ForeignKey(User, related_name='appointments', on_delete=models.CASCADE)

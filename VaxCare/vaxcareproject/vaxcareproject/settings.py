@@ -26,7 +26,15 @@ SECRET_KEY = 'django-insecure-mctqqjrnhce4ox6e2vs2-33s2y*8l8q#l^m$kr47bn@9heo6qv
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # hoặc mail server bạn dùng
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'trungtamtiemchungvaxcare@gmail.com'
+EMAIL_HOST_PASSWORD = 'ppuhoketrqfbyfnr'  # App password, không phải mật khẩu tài khoản Google
+
+
+ALLOWED_HOSTS = ['192.168.1.172','127.0.0.1','192.168.172.227']
 
 # Application definition
 
@@ -47,6 +55,9 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework'
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/lessons/"
 
