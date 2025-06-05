@@ -113,7 +113,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "vaxcare",
         "USER": "root",
-        "PASSWORD": "Quocan!123",
+        "PASSWORD": "",
         "HOST": ""
     }
 }
